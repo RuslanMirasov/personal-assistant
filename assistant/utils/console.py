@@ -45,3 +45,28 @@ def print_commands_table(commands):
             tablefmt="fancy_grid"
         )
     )
+
+
+def print_notes_table(notes):
+
+    if not notes:
+        console("No notes found.", "error")
+        return
+
+    table = []
+
+    for note in notes:
+        tags = " ".join(note.tags) if note.tags else "-"
+        table.append([
+            note.id,
+            note.text,
+            tags
+        ])
+
+    console(
+        tabulate(
+            table,
+            headers=["NOTE ID", "NOTE TEXT", "NOTE TAGS"],
+            tablefmt="fancy_grid"
+        )
+    )

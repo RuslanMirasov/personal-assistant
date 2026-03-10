@@ -1,12 +1,18 @@
 import pickle
 from pathlib import Path
 
+from assistant.models.contacts import Contacts
+from assistant.models.notes import Notes
+
+
 DATA_DIR = Path.home() / ".personal_assistant"
 CONTACTS_FILE = DATA_DIR / "contacts.pkl"
 NOTES_FILE = DATA_DIR / "notes.pkl"
 
+
 def ensure_data_dir():
     DATA_DIR.mkdir(exist_ok=True)
+
 
 def load_data():
     ensure_data_dir()
@@ -15,13 +21,13 @@ def load_data():
         with open(CONTACTS_FILE, "rb") as f:
             contacts = pickle.load(f)
     else:
-        contacts = {}
+        contacts = Contacts()
 
     if NOTES_FILE.exists():
         with open(NOTES_FILE, "rb") as f:
             notes = pickle.load(f)
     else:
-        notes = {}
+        notes = Notes()
 
     return contacts, notes
 

@@ -1,6 +1,6 @@
 from functools import wraps
-from assistant.models.bot_error import BotError
-from assistant.utils.console import console
+from assistant.models import BotError
+from assistant.utils import console
 
 
 def input_error(func):
